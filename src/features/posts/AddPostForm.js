@@ -1,21 +1,24 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { nanoid } from '@reduxjs/toolkit'
 
 import { addNewPost } from './postsSlice'
 
 export const AddPostForm = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+<<<<<<< HEAD
   const [userId, setUserId] = useState('')
   const [addRequestStatus, setAddRequestStatus] = useState('idle')
+=======
+>>>>>>> parent of 320a4d2 (starting on async thunks)
 
   const dispatch = useDispatch()
-  const users = useSelector((state) => state.users)
 
-  const onTitleChanged = (e) => setTitle(e.target.value)
-  const onContentChanged = (e) => setContent(e.target.value)
-  const onAuthorChanged = (e) => setUserId(e.target.value)
+  const onTitleChanged = e => setTitle(e.target.value)
+  const onContentChanged = e => setContent(e.target.value)
 
+<<<<<<< HEAD
   const canSave =
   [title, content, userId].every(Boolean) && addRequestStatus === 'idle'
 
@@ -24,6 +27,18 @@ const onSavePostClicked = async () => {
     try {
       setAddRequestStatus('pending')
       await dispatch(addNewPost({ title, content, user: userId })).unwrap()
+=======
+  const onSavePostClicked = () => {
+    if (title && content) {
+      dispatch(
+        postAdded({
+          id: nanoid(),
+          title,
+          content
+        })
+      )
+
+>>>>>>> parent of 320a4d2 (starting on async thunks)
       setTitle('')
       setContent('')
       setUserId('')
@@ -33,6 +48,7 @@ const onSavePostClicked = async () => {
       setAddRequestStatus('idle')
     }
   }
+<<<<<<< HEAD
 }
 
   const usersOptions = users.map((user) => (
@@ -40,6 +56,8 @@ const onSavePostClicked = async () => {
       {user.name}
     </option>
   ))
+=======
+>>>>>>> parent of 320a4d2 (starting on async thunks)
 
   return (
     <section>
@@ -50,15 +68,9 @@ const onSavePostClicked = async () => {
           type="text"
           id="postTitle"
           name="postTitle"
-          placeholder="What's on your mind?"
           value={title}
           onChange={onTitleChanged}
         />
-        <label htmlFor="postAuthor">Author:</label>
-        <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
-          <option value=""></option>
-          {usersOptions}
-        </select>
         <label htmlFor="postContent">Content:</label>
         <textarea
           id="postContent"
@@ -66,9 +78,7 @@ const onSavePostClicked = async () => {
           value={content}
           onChange={onContentChanged}
         />
-        <button type="button" onClick={onSavePostClicked} disabled={!canSave}>
-          Save Post
-        </button>
+        <button type="button" onClick={onSavePostClicked}>Save Post</button>
       </form>
     </section>
   )

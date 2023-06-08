@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit'
 import { client } from '../../api/client'
 
@@ -22,11 +23,20 @@ export const addNewPost = createAsyncThunk(
     return response.data
   }
 )
+=======
+import { createSlice } from '@reduxjs/toolkit'
+
+const initialState = [
+  { id: '1', title: 'First Post!', content: 'Hello!'},
+  { id: '2', title: 'Second Post', content: 'More text'}
+]
+>>>>>>> parent of 320a4d2 (starting on async thunks)
 
 const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
+<<<<<<< HEAD
     postAdded: {
       // The existing `postAdded` reducer and prepare callback were deleted
       reactionAdded(state, action) {}, // omit logic
@@ -67,13 +77,23 @@ const postsSlice = createSlice({
         state.posts.push(action.payload)
       })
   },
+=======
+    postAdded: (state, action) => {
+      state.push(action.payload)
+    }
+  }
+>>>>>>> parent of 320a4d2 (starting on async thunks)
 })
 
-export const { postAdded, postUpdated, reactionAdded } = postsSlice.actions
+export const { postAdded } = postsSlice.actions
 
+<<<<<<< HEAD
 export default postsSlice.reducer
 
 export const selectAllPosts = (state) => state.posts.posts
 
 export const selectPostById = (state, postId) =>
   state.posts.posts.find((post) => post.id === postId)
+=======
+export default postsSlice.reducer
+>>>>>>> parent of 320a4d2 (starting on async thunks)

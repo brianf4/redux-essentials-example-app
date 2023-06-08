@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -55,9 +56,23 @@ export const PostsList = () => {
     content = <div>{error}</div>
   }
 
+=======
+import React from "react";
+import { useSelector } from "react-redux";
+
+export const PostsList = () => {
+  const posts = useSelector(state => state.posts)
+
+  const renderedPosts = posts.map(post => (
+    <article className="post-excerpt" key={post.id}>
+      <h3>{post.title}</h3>
+      <p className="post-content">{post.content.substring(0, 100)}</p>
+    </article>
+  ))
+>>>>>>> parent of 320a4d2 (starting on async thunks)
 
   return (
-    <section className="posts-list">
+    <section className="posts-lists">
       <h2>Posts</h2>
       {content}
     </section>
